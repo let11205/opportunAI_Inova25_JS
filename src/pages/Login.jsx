@@ -15,13 +15,15 @@ const Login = () => {
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
+    sector: "",
     companyName: "",
     cnpj: "",
     email: "",
     password: "",
   });
 
-  const handleSectorSelect = () => {
+  const handleSectorSelect = (sector) => {
+    setFormData({ ...formData, sector });
     setStep("auth");
   };
 
@@ -58,12 +60,24 @@ const Login = () => {
               Em qual setor você trabalha?
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-3">
             <Button 
-              onClick={handleSectorSelect}
+              onClick={() => handleSectorSelect("Tecnologia Digital")}
               className="w-full h-16 text-lg bg-white text-black hover:bg-white/90"
             >
-              Tecnologia industrial
+              Tecnologia Digital
+            </Button>
+            <Button 
+              onClick={() => handleSectorSelect("Tecnologia Industrial")}
+              className="w-full h-16 text-lg bg-white text-black hover:bg-white/90"
+            >
+              Tecnologia Industrial
+            </Button>
+            <Button 
+              onClick={() => handleSectorSelect("Outro")}
+              className="w-full h-16 text-lg bg-white text-black hover:bg-white/90"
+            >
+              Outro
             </Button>
           </CardContent>
         </Card>
